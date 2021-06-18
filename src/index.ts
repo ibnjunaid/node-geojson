@@ -102,12 +102,12 @@ interface feature {
 }
 
 
-export interface featureCollection {
+interface featureCollection {
     type: collectionTypes.FeatureCollection,
     features: feature[];
 }
 
-interface Query {
+export interface Query {
     geometry?: {
         type: string
     },
@@ -116,15 +116,15 @@ interface Query {
     }
 }
 export class FeatureCollection {
-    data: featureCollection;
-    filePath : string
+    private data: featureCollection;
+    private filePath : string | undefined
 
-    constructor(x: featureCollection, filePath :string) {
+    constructor(x: featureCollection, filePath ?:string) {
         this.data = x;
         this.filePath = filePath
     }
 
-    public Find = (feature?: Query) => {
+    public Find  (feature?: Query)  {
         if (feature === undefined) {
             return this.data.features
         } else if (feature.geometry?.type === null && feature.properties === null) {
@@ -150,7 +150,7 @@ export class FeatureCollection {
     }
 
 
-    public FindByProperty = (x: { [index: string]: any }) => {
+    public FindByProperty (x: { [index: string]: any }) {
         return this.data.features.filter(f => {
             for (let [key, value] of Object.entries(x)) {
                 if (f.properties[key] != value) {
@@ -161,7 +161,7 @@ export class FeatureCollection {
         })
     }
 
-    public FindByGeometry = (d: { type?: string }) => {
+    public FindByGeometry (d: { type?: string }) {
         return this.data.features.filter(f => f.geometry.type === d?.type)
     }
 
@@ -201,7 +201,7 @@ export class FeatureCollection {
         return this.data.features.filter(f => f.geometry.type !== geometry?.type)
     }
 
-    private update = (feature: Query, update: Query) => {
+    private update = (update: Query, feature?: Query) => {
         if (feature === undefined) {
             return this.findAndUpdateAll(update || {});
         } else if (feature.geometry === undefined) {
@@ -255,19 +255,25 @@ export class FeatureCollection {
         })
     }
 
-    public GetAllFeatures = () => {
+    public GetAllFeatures (){
         return this.data.features
     }
-    public Update(feature: Query, update: Query){
-        this.data.features = this.update(feature, update);
+    public Update( update: Query,feature?: Query){
+        this.data.features = this.update(update,feature);
     }
     public Remove(feature:Query){
         this.data.features = this.remove(feature)
     }
     public async Save(filePath ?: string){
         const realpath = filePath === undefined ? this.filePath : filePath;
+        console.log(realpath);
         try{
-            await fs.writeFile(realpath,JSON.stringify(this.data))
+            if(realpath){
+                await fs.writeFile(realpath,JSON.stringify(this.data))
+
+            } else {
+                throw "Pass location where you want to save the file";
+            }
         } catch (error){
             throw error;
         }
@@ -284,20 +290,8 @@ export const createUsingFile = async (filePath: string) => {
     return new FeatureCollection(json,filePath)
 }
 
-export const createFromObject = (data: featureCollection , filePath : string) => {
+export const createFromObject = (data: featureCollection , filePath ?: string) => {
     return new FeatureCollection(data, filePath);
-}
-
-
-export class GeoJSON {
-    static createUsingFile = async (filePath: string) => {
-        const data = await fs.readFile(filePath, 'utf-8');
-        const json = JSON.parse(data);
-        return new FeatureCollection(json,filePath)
-    }
-    static createFromObject = (data: featureCollection, filePath : string) => {
-        return new FeatureCollection(data,filePath);
-    }
 }
 
 

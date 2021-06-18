@@ -1,8 +1,4 @@
 {
-  "dependencies": {
-    "@types/node": "^15.12.2",
-    "ts-node": "^10.0.0"
-  },
   "name": "node-geojson",
   "version": "1.0.0",
   "description": "parse and modify geojson objects using node",
@@ -12,7 +8,10 @@
     "lib": "lib",
     "test": "test"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/node": "^15.12.2",
+    "jest": "^27.0.4"
+  },
   "scripts": {
     "test": "npm test "
   },

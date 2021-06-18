@@ -1,12 +1,12 @@
 import * as fs from "fs/promises";
-import { FeatureCollection, createUsingFile, GeoJSON } from '../src/index';
+import { FeatureCollection, createUsingFile, } from '../src/index';
 
 async function xyz () {
-    const x = await GeoJSON.createUsingFile("/home/osama/Desktop/Geojson/data/sample1.geojson")
-    const y = await GeoJSON.createUsingFile("/home/osama/Desktop/Geojson/data/sample1.geojson")
+    const y : FeatureCollection = await createUsingFile("/home/osama/Desktop/Geojson/data/sample1.geojson")
+    console.log(y.GetAllFeatures().length);
     y.Remove({geometry:{type:"Point"}})
-    await y.Save("test.geoJSON")
-    console.log(x.data.features.length,y.data.features.length)
+    await y.Save("/home/osama/Desktop/Geojson/data/sample3.geojson")
+    // console.log(y.GetAllFeatures().length,y.GetAllFeatures().length)
 }
 
 xyz().catch(console.error);
