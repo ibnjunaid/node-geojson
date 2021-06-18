@@ -43,13 +43,18 @@ For node, use npm: `$ npm install node-geojson`
 
 ### Methods
 > Instance of FeatureCollection provide following methods to operate on the geojson.
+
+#### Find
 ```js 
+
     // Returns  features that matches the Query q
     FeatureCollection.Find(q?:Query) 
 
     // When called without any parameter, returns all features in the collection
     FeatureCollection.Find() 
 ```
+##### FindByGeometry
+
 ```js
     // Return features having geometry 
     // specified in the parameter 
@@ -57,6 +62,7 @@ For node, use npm: `$ npm install node-geojson`
 
     FeatureCollection.FindByGeometry(geometry)
 ```
+##### FindByProperty
 
 ```js 
     // Return features having properties 
@@ -68,6 +74,7 @@ For node, use npm: `$ npm install node-geojson`
     
     FeatureCollection.FindByProperty(property)
 ```
+#### Update
 
 ```js 
     const update =  {
@@ -89,6 +96,7 @@ For node, use npm: `$ npm install node-geojson`
 
 
 ```
+#### Remove
 
 ```js
     //  Remove features matching query
@@ -98,6 +106,8 @@ For node, use npm: `$ npm install node-geojson`
 If no path is specified and ```FeatureCollection``` was created using ```createUsingFile``` function, then data is written to the same file
 In case of ```FeatureCollection``` created using ```createFromObject```, the filePath is mandatory if you want to call ```Save``` else Save will fail
 
+#### Save
+
 ```js
     //Save the file to the specified path
     FeatureCollection.Save("path/where/i/want/to/save")
@@ -106,7 +116,7 @@ In case of ```FeatureCollection``` created using ```createFromObject```, the fil
     // overwrite to same path from which it was created 
     FeatureCollection.Save()
 ```
-
+#### GetAllFeatures
 
 ```js
     // GetAllFeatures return all features 
