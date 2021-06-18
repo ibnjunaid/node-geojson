@@ -1,6 +1,6 @@
 {
   "name": "node-geojson",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "parse and modify geojson objects using node",
   "main": "lib/index.js",
   "directories": {
