@@ -20,31 +20,20 @@ For node, use npm: `$ npm install node-geojson`
 
 ## Documentation
 
-### create an instance of FeatureCollection
+### Instantiate 
  > <code>createUsingFile</code> function reads a geoJSON file and returns a promise which resolves to an Object of  <code>FeatureCollection</code> class.
 
  > <code>createFromObject</code> function takes a valid geoJSON Object along with an optional filePath where we may want to save the file, and returns an Object of <code>FeatureCollection</code>  class.
 
 
-### Structure of function Query and Update Object 
-```ts 
-{
-    geometry?: {
-        type: string
-    },
-    properties?: {
-        [index: string]: any
-    }
-}
-```
 
-<span>class FeatureCollection </span>
+### FeatureCollection : class 
 
 
-### Methods
+#### Methods
 > Instance of FeatureCollection provide following methods to operate on the geojson.
 
-#### Find
+##### Find
 ```js 
 
     // Returns  features that matches the Query q
@@ -74,7 +63,7 @@ For node, use npm: `$ npm install node-geojson`
     
     FeatureCollection.FindByProperty(property)
 ```
-#### Update
+##### Update
 
 ```js 
     const update =  {
@@ -96,7 +85,7 @@ For node, use npm: `$ npm install node-geojson`
 
 
 ```
-#### Remove
+##### Remove
 
 ```js
     //  Remove features matching query
@@ -106,7 +95,7 @@ For node, use npm: `$ npm install node-geojson`
 If no path is specified and ```FeatureCollection``` was created using ```createUsingFile``` function, then data is written to the same file
 In case of ```FeatureCollection``` created using ```createFromObject```, the filePath is mandatory if you want to call ```Save``` else Save will fail
 
-#### Save
+##### Save
 
 ```js
     //Save the file to the specified path
@@ -116,12 +105,27 @@ In case of ```FeatureCollection``` created using ```createFromObject```, the fil
     // overwrite to same path from which it was created 
     FeatureCollection.Save()
 ```
-#### GetAllFeatures
+##### GetAllFeatures
+>  GetAllFeatures return all features in the collection
 
 ```js
-    // GetAllFeatures return all features 
-    // in the collection
     FeatureCollection.GetAllFeatures()
+```
+
+
+### Interface
+> All functions take parameter of the following form satisfying the ```Query``` interface
+```ts
+const param = {
+    geometry: {
+        type: 'Point'
+    },
+    properties: {
+        name : "PengooX",
+        color : ' red'
+        // ... many more
+    }
+}
 ```
 
 ## Example Usage

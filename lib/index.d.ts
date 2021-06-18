@@ -44,11 +44,11 @@ interface feature {
         [index: string]: any;
     };
 }
-export interface featureCollection {
+interface featureCollection {
     type: collectionTypes.FeatureCollection;
     features: feature[];
 }
-interface Query {
+export interface Query {
     geometry?: {
         type: string;
     };
@@ -57,16 +57,16 @@ interface Query {
     };
 }
 export declare class FeatureCollection {
-    data: featureCollection;
-    filePath: string;
-    constructor(x: featureCollection, filePath: string);
-    Find: (feature?: Query | undefined) => feature[];
-    FindByProperty: (x: {
+    private data;
+    private filePath;
+    constructor(x: featureCollection, filePath?: string);
+    Find(feature?: Query): feature[];
+    FindByProperty(x: {
         [index: string]: any;
-    }) => feature[];
-    FindByGeometry: (d: {
+    }): feature[];
+    FindByGeometry(d: {
         type?: string;
-    }) => feature[];
+    }): feature[];
     private remove;
     private findAndremoveByProperty;
     private findAndremoveByGeometry;
@@ -74,16 +74,12 @@ export declare class FeatureCollection {
     private findAndUpdateAll;
     private findAndUpdateByGeometry;
     private findAndUpdateByProperties;
-    GetAllFeatures: () => feature[];
-    Update(feature: Query, update: Query): void;
+    GetAllFeatures(): feature[];
+    Update(update: Query, feature?: Query): void;
     Remove(feature: Query): void;
     Save(filePath?: string): Promise<void>;
 }
 export declare const createUsingFile: (filePath: string) => Promise<FeatureCollection>;
-export declare const createFromObject: (data: featureCollection, filePath: string) => FeatureCollection;
-export declare class GeoJSON {
-    static createUsingFile: (filePath: string) => Promise<FeatureCollection>;
-    static createFromObject: (data: featureCollection, filePath: string) => FeatureCollection;
-}
+export declare const createFromObject: (data: featureCollection) => FeatureCollection;
 export {};
 //# sourceMappingURL=index.d.ts.map
