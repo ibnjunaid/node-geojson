@@ -290,8 +290,8 @@ export const createUsingFile = async (filePath: string) => {
     return new FeatureCollection(json,filePath)
 }
 
-export const createFromObject = (data: featureCollection , filePath ?: string) => {
-    return new FeatureCollection(data, filePath);
+export const createFromObject = (data: featureCollection ) => {
+    return new FeatureCollection(data);
 }
 
 

@@ -82,8 +82,8 @@ For node, use npm: `$ npm install node-geojson`
             locality : "XYZ"
         }
     }
-    //  Update all features matching query
-    // by adding update doc to each feature.
+    //  Update features matching query
+    // by adding properties from update Object to each feature.
     geodata.Update(update : Query, query : Query)
 
     //  Update all features in the FeatureCollection, when only update is passed 
@@ -93,18 +93,27 @@ For node, use npm: `$ npm install node-geojson`
 ```
 
 ```js
-    geodata.Remove()
+    //  Remove features matching query
+    geodata.Remove(query : Query)
 ```
+> Methods automatically donot write the data to disk. To write data to disk call  ```Save``` method,  optionally passing the path where you want save the file.
+If no path is specified and ```FeatureCollection``` was created using ```createUsingFile``` function, then data is written to the same file
+In case of ```FeatureCollection``` created using ```createFromObject```, the filePath is mandatory if you want to call ```Save``` else Save will fail
 
 ```js
-    geodata.Save()
+    //Save the file to the specified path
+    FeatureCollection.Save("path/where/i/want/to/save")
+    
+    // for createUsingFile
+    // overwrite to same path from which it was created 
+    FeatureCollection.Save()
 ```
 
 
 ```js
     // GetAllFeatures return all features 
     // in the collection
-    geodata.GetAllFeatures()
+    FeatureCollection.GetAllFeatures()
 ```
 
 <!-- ## Example Usage -->
