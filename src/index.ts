@@ -88,7 +88,7 @@ interface MultiPolygonCoordinates {
 
 
 
-interface feature {
+export interface feature {
     type: collectionTypes.Feature
     geometry: {
         type: geometryTypes,
@@ -276,6 +276,15 @@ export class FeatureCollection {
             }
         } catch (error){
             throw error;
+        }
+    }
+    public Add(feature: feature){
+        const len = this.data.features.length
+        const len1 =this.data.features.push(feature);
+        if(len1 > len){
+            return true;
+        } else {
+            throw "New Feature addition failed";
         }
     }
 

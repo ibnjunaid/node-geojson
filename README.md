@@ -1,5 +1,5 @@
 # node-geojson
-perform CRUD operations on geoJSON data using node
+Perform CRUD operations on geoJSON data using node
 
 ## Installation 
 For node, use npm: `$ npm install node-geojson`
@@ -33,6 +33,12 @@ For node, use npm: `$ npm install node-geojson`
 #### Methods
 > Instance of FeatureCollection provide following methods to operate on the geojson.
 
+##### Add
+```js 
+    // Add a new feature of interface feature to features Array
+    FeatureCollection.Add(f) 
+```
+
 ##### Find
 ```js 
 
@@ -45,8 +51,10 @@ For node, use npm: `$ npm install node-geojson`
 ##### FindByGeometry
 
 ```js
-    // Return features having geometry 
-    // specified in the parameter 
+    /* 
+        Return features matching geometry 
+        specified in the parameter 
+    */
     const geometry = {type:"Point"}
 
     FeatureCollection.FindByGeometry(geometry)
@@ -54,7 +62,7 @@ For node, use npm: `$ npm install node-geojson`
 ##### FindByProperty
 
 ```js 
-    // Return features having properties 
+    // Return features matching properties 
     // specified in the parameter 
     const property = {
         name : "pengooX",
@@ -78,10 +86,10 @@ For node, use npm: `$ npm install node-geojson`
     }
     //  Update features matching query
     // by adding properties from update Object to each feature.
-    geodata.Update(update : Query, query : Query)
+    FeatureCollection.Update(update : Query, query : Query)
 
     //  Update all features in the FeatureCollection, when only update is passed 
-    geodata.Update(update : Query)
+    FeatureCollection.Update(update : Query)
 
 
 ```
@@ -89,11 +97,11 @@ For node, use npm: `$ npm install node-geojson`
 
 ```js
     //  Remove features matching query
-    geodata.Remove(query : Query)
+    FeatureCollection.Remove(query : Query)
 ```
-> Methods automatically donot write the data to disk. To write data to disk call  ```Save``` method,  optionally passing the path where you want save the file.
-If no path is specified and ```FeatureCollection``` was created using ```createUsingFile``` function, then data is written to the same file
-In case of ```FeatureCollection``` created using ```createFromObject```, the filePath is mandatory if you want to call ```Save``` else Save will fail
+> Methods automatically donot write the data to disk. To write data to disk call  ```Save``` method,  optionally passing the path where you want to save the file.
+If no path is specified and ```FeatureCollection``` was created using ```createUsingFile``` function, then data is overwritten to the same file
+In case of ```FeatureCollection``` created using ```createFromObject```, the filePath is mandatory if you want to call ```Save```  without path it will fail.
 
 ##### Save
 
