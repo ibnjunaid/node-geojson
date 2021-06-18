@@ -4,32 +4,29 @@ perform CRUD operations on geoJSON data using node
 ## Installation 
 For node, use npm: `$ npm install node-geojson`
 
-## Getting Started 
+## Getting Started
+
 ```js
     const geoJSON = require('node-geojson');  
- ```
- > <code style="background:black; color: yellow;padding: 3px;  ">createUsingFile</code> function reads a geoJSON file and returns a promise which resolves to an Object of  <code style="background:black; color: green;padding: 3px;  ">FeatureCollection</code> class.
-```js 
+
     async function main(){
         const geodata = await geoJSON.createUsingFile("path/to/geoJSON/file");
-    }
-```
- > <code style="background:black; color: yellow;padding: 3px;  ">createFromObject</code> function  takes a valid  geoJSON Object along with an optional filePath where we may  want to save the file and returns an Object of <code style="background:black; color: green;padding: 3px;  ">FeatureCollection</code>  class.
-```js 
-    function main(){
-
-        const geodata = geoJSON.createFromObject(jsonObject,"path/to/save the file");
         
-        //optional filePath to manipulate data in memory for front-end applications 
+        // Optional filePath to manipulate data in memory for front-end applications 
         // without filesystem
         const inMemorygeodata = geoJSON.createFromObject(jsonObject); 
-
     }
 ```
 
-<span style="color:yellow ;padding: 4px"> interface </span> <code style="background:black; color: green;padding: 3px;"> Query </code>
+## Documentation
 
-> ### Defines the structure of Query and Update Object that need to be passed to the methods 
+### create an instance of FeatureCollection
+ > <code>createUsingFile</code> function reads a geoJSON file and returns a promise which resolves to an Object of  <code>FeatureCollection</code> class.
+
+ > <code>createFromObject</code> function takes a valid geoJSON Object along with an optional filePath where we may want to save the file, and returns an Object of <code>FeatureCollection</code>  class.
+
+
+### Structure of function Query and Update Object 
 ```ts 
 {
     geometry?: {
@@ -41,10 +38,11 @@ For node, use npm: `$ npm install node-geojson`
 }
 ```
 
-<span style="color:yellow ;padding: 4px"> class </span> <code style="background:black; color: green;padding: 3px;"> FeatureCollection </code>
+<span>class FeatureCollection </span>
 
-> Objects of FeatureCollections provide following methods to operate on the geojson.
 
+### Methods
+> Instance of FeatureCollection provide following methods to operate on the geojson.
 ```js 
     // Returns  features that matches the Query q
     FeatureCollection.Find(q?:Query) 
@@ -116,4 +114,4 @@ In case of ```FeatureCollection``` created using ```createFromObject```, the fil
     FeatureCollection.GetAllFeatures()
 ```
 
-<!-- ## Example Usage -->
+## Example Usage
