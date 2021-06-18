@@ -2,5 +2,32 @@
   "dependencies": {
     "@types/node": "^15.12.2",
     "ts-node": "^10.0.0"
-  }
+  },
+  "name": "node-geojson",
+  "version": "1.0.0",
+  "description": "parse and modify geojson objects using node",
+  "main": "lib/index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib",
+    "test": "test"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm test "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibnjunaid/node-geojson.git"
+  },
+  "keywords": [
+    "geojson",
+    "maps"
+  ],
+  "author": "ibnjunaid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ibnjunaid/node-geojson/issues"
+  },
+  "homepage": "https://github.com/ibnjunaid/node-geojson#readme"
 }

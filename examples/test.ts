@@ -1,5 +1,5 @@
 import * as fs from "fs/promises";
-import { FeatureCollection, createUsingFile, GeoJSON } from '../index';
+import { FeatureCollection, createUsingFile, GeoJSON } from '../src/index';
 
 async function xyz () {
     const x = await GeoJSON.createUsingFile("/home/osama/Desktop/Geojson/data/sample1.geojson")
